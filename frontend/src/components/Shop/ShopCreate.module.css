@@ -1,0 +1,103 @@
+
+.loginContainer {
+    background-color: #fff;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    width: 350px;
+    margin-top:3% ;
+    box-sizing: content-box;
+  }
+  
+  .loginContainer h2 {
+    text-align: center;
+  }
+  
+  .loginContainer form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .loginContainer label {
+    margin-bottom: 4px;
+  }
+  
+  .loginContainer input {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .checkboxGroup {
+  
+    margin-right: 90px;
+   
+  }
+  
+  
+  .avataricon{
+    height: 30px;
+    width: 30px;
+  }
+  .icon{
+    margin-right: 20px;
+  }
+  
+  
+  .forgotPassword {
+    text-align: center;
+   
+    margin-left: 90px;
+  }
+  
+  .forgotPassword a {
+    text-decoration: none;
+    color: #4caf50;
+  }
+  
+  .loginContainer button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .loginContainer button:hover {
+    background-color: #45a049;
+  }
+  
+  .bottomContianer{
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+  }
+  .signUp{
+    display: flex;
+    margin: 10px  15px 10px 5px;
+    /* margin-bottom: 15px; */
+    
+    /* align-items: center; */
+  }
+   .signUp p{
+    
+    margin-right:10px ;
+  }
+  .inputFile input{
+    width: 250px;
+  }
+  .inputFile{
+    width: 100%;
+  }
+  *,::after, ::before {
+    box-sizing: border-box;
+  }
+  /* .loginContainer label{
+    margin-left:-200px ;
+  } */
+  
+  
