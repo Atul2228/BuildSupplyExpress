@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../styles/styles";
-import { categoriesData, productData } from "../../static/data";
-import {
-  AiOutlineHeart,
-  AiOutlineSearch,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
-import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import { BiMenuAltLeft } from "react-icons/bi";
-import { CgProfile } from "react-icons/cg";
-import DropDown from "./DropDown";
-import Navbar from "./Navbar";
+// import styles from "../../styles/styles";
+// import { categoriesData, productData } from "../../static/data";
+// import {
+//   AiOutlineHeart,
+//   AiOutlineSearch,
+//   AiOutlineShoppingCart,
+// } from "react-icons/ai";
+// import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+// import { BiMenuAltLeft } from "react-icons/bi";
+// import { CgProfile } from "react-icons/cg";
+// import DropDown from "./DropDown";
+// import Navbar from "./Navbar";
 import { useSelector } from "react-redux";
-import Cart from "../cart/Cart";
-import Wishlist from "../Wishlist/Wishlist";
-import { RxCross1 } from "react-icons/rx";
+// import Cart from "../cart/Cart";
+// import Wishlist from "../Wishlist/Wishlist";
+// import { RxCross1 } from "react-icons/rx";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoBagHandle } from "react-icons/io5";
 
@@ -40,9 +40,27 @@ const Header = ({ activeHeading }) => {
 
   return (
 
-    <nav className="py-2  border-bottom bg-info text-white ">
+    <nav className="py-2  border-bottom bg-info text-white  shadow-sm" style={{
+      position: 'sticky',
+      top: 0,
+      width: '100%',
+      backgroundColor: '#f9f9f9',
+      padding: '10px 0',
+      zIndex: 1000,
+      borderBottom: '1px solid #ccc'
+  }}>
     <div className="container d-flex flex-wrap ">
+  
       <ul className="nav me-auto">
+        
+
+      {/* <Link
+           to="/"
+            className="nav-link link-body-emphasis px-2 active"
+            aria-current="page"
+          >
+            
+          </Link> */}
         <li className="nav-item">
           <Link
             to="#"
@@ -54,21 +72,21 @@ const Header = ({ activeHeading }) => {
           </Link>
         </li>
         <li className="nav-item">
-          <a
-            href="/"
+          <Link
+           to="/"
             className="nav-link link-body-emphasis px-2 active"
             aria-current="page"
           >
             Home
-          </a>
+          </Link>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link to="#" className="nav-link link-body-emphasis px-2"></Link>
-        </li>
+        </li> */}
         <li className="nav-item">
-          <a href="/products" className="nav-link link-body-emphasis px-2">
+          <Link to="/products" className="nav-link link-body-emphasis px-2">
             Products
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
           <Link to="/faq" className="nav-link link-body-emphasis px-2">
@@ -103,7 +121,7 @@ const Header = ({ activeHeading }) => {
           </Link>
         </li>
         <li className="nav-item">
-          <a href="/bag" className="nav-link link-body-emphasis px-3">
+          <Link to="/bag" className="nav-link link-body-emphasis px-3">
             <div className="bag">
              
               <IoBagHandle size={30}></IoBagHandle>
@@ -111,7 +129,7 @@ const Header = ({ activeHeading }) => {
                 {cart && cart.length}<span className="visually-hidden">unread messages</span>
               </span>
             </div>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
           {isAuthenticated ? (

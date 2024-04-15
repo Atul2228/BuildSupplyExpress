@@ -37,7 +37,7 @@ const ProductDetails = ({ data }) => {
       setClick(false);
     }
     
-      setCount(data && data.minimumQuantity || 1);
+      setCount( data && data.minimumQuantity || 1);
     
     
   }, [data, wishlist]);
@@ -146,7 +146,7 @@ const ProductDetails = ({ data }) => {
                 <p>{data.description}</p>
                 <div className="flex pt-3">
                   <h4 className={`${styles.productDiscountPrice}`}>
-                    {data.discountPrice}$
+                    ₹{data.discountPrice}
                   </h4>
                   <h3 className={`${styles.price}`}>
                     {data.originalPrice ? data.originalPrice + "$" : null}
@@ -214,7 +214,7 @@ const ProductDetails = ({ data }) => {
                       </h3>
                     </Link>
                     <h5 className="pb-3 text-[15px]">
-                      ({averageRating}/5) Ratings
+                      {/* ({averageRating}/5) Ratings */}
                     </h5>
                   </div>
                  
@@ -361,7 +361,13 @@ const ProductDetailsInfo = ({
                 Total Reviews:{" "}
                 <span className="font-[500]">{totalReviewsLength}</span>
               </h5>
-           
+              {/* <Link to="/">
+                <div
+                  className={`${styles.button} !rounded-[4px] !h-[39.5px] mt-3`}
+                >
+                  <h4 className="text-white">Visit Shop</h4>
+                </div>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -369,5 +375,9 @@ const ProductDetailsInfo = ({
     </div>
   );
 };
+
+
+  
+
 
 export default ProductDetails;

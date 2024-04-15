@@ -1,92 +1,64 @@
+
+import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createProduct } from "../../redux/actions/product";
+import { createProduct, updateProduct } from "../../redux/actions/product";
 import { categoriesData,brands  } from "../../static/data";
 import { toast } from "react-toastify";
+import { server } from '../../server';
 
-const CreateProduct = () => {
-  const { seller } = useSelector((state) => state.seller);
-  const { success, error } = useSelector((state) => state.products);
+const CreateProduct = ({data}) => {
+  const [error, setError] = useState('');
+  // const { seller } = useSelector((state) => state.seller);
+  // const { success, error } = useSelector((state) => state.products);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [images, setImages] = useState([]);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [brand, setBrand] = useState("");
-  const [tags, setTags] = useState("");
-  const [originalPrice, setOriginalPrice] = useState();
-  const [discountPrice, setDiscountPrice] = useState();
-  const [stock, setStock] = useState();
-  const [minimumQuantity, setMinimumQuantity] = useState(1); // Default to 1 or another value
-
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-    if (success) {
-      toast.success("Product created successfully Wait for Approval!");
-
-      navigate("/success");
-      window.location.reload();
-    }
-  }, [dispatch, error, success]);
-
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-
-    setImages([]);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImages((old) => [...old, reader.result]);
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const [images, setImages] = useState(data.images);
+  const [productID,setProductId]=useState(data._id)
+  const [name, setName] = useState(data.name);
+  const [description, setDescription] = useState(data.description);
+  const [category, setCategory] = useState(data.categoriesData);
+  const [brand, setBrand] = useState(data.brand);
+  const [tags, setTags] = useState([]);
+  const [originalPrice, setOriginalPrice] = useState(data.originalPrice);
+  const [discountPrice, setDiscountPrice] = useState(data.discountPrice);
+  const [stock, setStock] = useState(data.stock);
+  const [minimumQuantity, setMinimumQuantity] = useState(data.minimumQuantity); // Default to 1 or another value
+  // console.log(productID);
+  const handleSubmit=async(e)=>{
     e.preventDefault();
+     const myFrom =new FormData();
+     myFrom.set("name",name)
+     myFrom.set("description",description)
+     myFrom.set("catigory",category)
+     myFrom.set("brand",brands)
+     myFrom.set("tags",tags)
+     myFrom.set("orginalPrice",originalPrice)
+     myFrom.set("discountPrice",discountPrice)
+     myFrom.set("stock",stock)
+     myFrom.set("minimumQuantity",minimumQuantity)
 
-    const newForm = new FormData();
+     images.forEach((image)=>{
+      myFrom.append("images",image)
+     })
 
-    images.forEach((image) => {
-      newForm.set("images", image);
-    });
-    newForm.append("name", name);
-    newForm.append("description", description);
-    newForm.append("category", category);
-    newForm.append("brand", brand);
-    newForm.append("tags", tags);
-    newForm.append("originalPrice", originalPrice);
-    newForm.append("discountPrice", discountPrice);
-    newForm.append("stock", stock);
-    newForm.append("stock", minimumQuantity);
-    newForm.append("shopId", seller._id);
-    dispatch(
-      createProduct({
-        name,
-        description,
-        category,
-        brand,
-        tags,
-        originalPrice,
-        discountPrice,
-        stock,
-        shopId: seller._id,
-        images,
-        minimumQuantity
-      })
-    );
-  };
+     try {
+      //   await axios.post(`/api/admin/products/approve/${id}`);
+      await axios.post(`${server}/product/update-product/${productID}`,);
+        // fetchPendingProducts(); // Refresh the list
+      } catch (err) {
+        setError(error);
+      }
+  }
+
+ 
+
+
+
+
 
   return (
     <div className="w-[90%] 800px:w-[50%] bg-white  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll">
@@ -245,7 +217,7 @@ const CreateProduct = () => {
             id="upload"
             className="hidden"
             multiple
-            onChange={handleImageChange}
+            // onChange={handleImageChange}
           />
           <div className="w-full flex items-center flex-wrap">
             <label htmlFor="upload">

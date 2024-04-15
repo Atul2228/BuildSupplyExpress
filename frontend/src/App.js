@@ -66,6 +66,9 @@ import ChangeProductStatus from "./components/Admin/ChangeProductStatus.jsx";
 import Atul from "./components/Admin/ChangeProductStatuss.jsx";
 import ChangeProductStatuss from "./components/Admin/ChangeProductStatuss.jsx";
 import AdminDashboardProductsStatus from "./pages/AdminDashboardProductsStatus.jsx";
+import UpdateProduct from "./components/Shop/UpdateProduct.jsx";
+import ShopProductUpdatePage from "./pages/Shop/ShopProductUpdatePage.jsx";
+import ProductSucces from "./components/Products/ProductSucces.jsx";
 
 const App = () => {
   const [stripeApikey, setStripeApiKey] = useState("");
@@ -99,7 +102,8 @@ const App = () => {
       )}
    
       <Routes>
-      <Route path="Atul" element={<Atul />} />
+      {/* <Route path="Atul" element={<Atul />} /> */}
+      <Route path="/update-product/:id" element={<ShopProductUpdatePage />} />
       
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -120,15 +124,15 @@ const App = () => {
         <Route path="/best-selling" element={<BestSellingPage />} />
        
         <Route path="/faq" element={<FAQPage />} />
-        {/* <Route
+        <Route
           path="/checkout"
           element={
             <ProtectedRoute>
               <CheckoutPage />
             </ProtectedRoute>
           }
-        /> */}
-        <Route path="/checkout" element={<CheckoutPage />} />
+        />
+        <Route path="/success" element={<ProductSucces />} />
         <Route path="/order/success" element={<OrderSuccessPage />} />
         <Route
           path="/profile"

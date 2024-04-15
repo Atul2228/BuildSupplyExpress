@@ -8,54 +8,10 @@ const Shop = require("../model/shop");
 const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 const sendMail = require("../utils/sendMail");
+const user = require("../model/user");
 
 // create product
-// router.post(
-//   "/create-product",
-//   catchAsyncErrors(async (req, res, next) => {
-//     try {
-//       const shopId = req.body.shopId;
-//       const shop = await Shop.findById(shopId);
-//       if (!shop) {
-//         return next(new ErrorHandler("Shop Id is invalid!", 400));
-//       } else {
-//         let images = [];
 
-//         if (typeof req.body.images === "string") {
-//           images.push(req.body.images);
-//         } else {
-//           images = req.body.images;
-//         }
-      
-//         const imagesLinks = [];
-      
-//         for (let i = 0; i < images.length; i++) {
-//           const result = await cloudinary.v2.uploader.upload(images[i], {
-//             folder: "products",
-//           });
-      
-//           imagesLinks.push({
-//             public_id: result.public_id,
-//             url: result.secure_url,
-//           });
-//         }
-      
-//         const productData = req.body;
-//         productData.images = imagesLinks;
-//         productData.shop = shop;
-
-//         const product = await Product.create(productData);
-
-//         res.status(201).json({
-//           success: true,
-//           product,
-//         });
-//       }
-//     } catch (error) {
-//       return next(new ErrorHandler(error, 400));
-//     }
-//   })
-// );
 
 router.post("/create-product", catchAsyncErrors(async (req, res, next) => {
   try {
@@ -84,17 +40,14 @@ router.post("/create-product", catchAsyncErrors(async (req, res, next) => {
           url: result.secure_url,
         });
       }
-
-      // Create the productData object from the request body, including minimumQuantity
       const productData = {
         ...req.body,
         images: imagesLinks,
         shop: shop,
-        // Ensure minimumQuantity is correctly set; default to 1 if not provided
+        
         minimumQuantity: req.body.minimumQuantity || 1
       };
 
-      // Now, productData includes all necessary fields, including minimumQuantity
       const product = await Product.create(productData);
 
       res.status(201).json({
@@ -107,8 +60,145 @@ router.post("/create-product", catchAsyncErrors(async (req, res, next) => {
   }
 }));
 
+// router.put(
+//   "/update-product/:id",
+//   // Middleware to ensure the user is authenticated
+//   catchAsyncErrors(async (req, res, next) => {
+//     try {
+//       const productId = req.params.id; // Getting product ID from URL
+//       console.log(productId);
+//       const { name, description, category, brand, tags, originalPrice, discountPrice, stock, minimumQuantity } = req.body;
+
+//       // Find the product by ID
+//       const product = await Product.findById(productId);
+//       if (!product) {
+//         return next(new ErrorHandler("Product not found", 404));
+//       }
+
+//       // Update product details if provided
+//       product.name = name || product.name;
+//       product.description = description || product.description;
+//       product.category = category || product.category;
+//       product.brand = brand || product.brand;
+      
+//       // If tags are provided and it's an array, update them
+//       if (tags && Array.isArray(tags)) {
+//         product.tags = tags;
+//       }
+
+//       product.originalPrice = originalPrice || product.originalPrice;
+//       product.discountPrice = discountPrice || product.discountPrice;
+//       product.stock = stock || product.stock;
+//       product.minimumQuantity = minimumQuantity || product.minimumQuantity;
+
+//       // Save the updated product information
+//       await product.save();
+
+//       // Respond with the updated product details
+//       res.status(200).json({
+//         success: true,
+//         message: "Product information updated successfully",
+//         product
+//       });
+
+//     } catch (error) {
+//       // Handle any errors that occur during the process
+//       return next(new ErrorHandler(error.message, 500));
+//     }
+//   })
+// );
+
+
+
+
+
+// update product 
+// `${server}/product/update-product/${id}`,
+//  router.put("/update-product/:id",
+//   catchAsyncErrors(async (req, res, next) => {
+//     let product = await Product.findById(req.params.id);
+  
+//     if (!product) {
+//       return next(new ErrorHander("Product not found", 404));
+//     }
+  
+//     // Images Start Here
+//     // let images = [];
+  
+//     // if (typeof req.body.images === "string") {
+//     //   images.push(req.body.images);
+//     // } else {
+//     //   images = req.body.images;
+//     // }
+ 
+  
+//     product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+//       new: true,
+//       runValidators: true,
+//       useFindAndModify: false,
+//     });
+  
+//     res.status(200).json({
+//       success: true,
+//       product,
+//     });
+//   })
+//  ) ;
+// router.put('/updateProduct',(req,res,next)=>{
+//   console.log(req.params.id);
+//   Product.findByIdAndUpdate({_id:req.params.id},{
+//     $set:{
+//       name:req.body.name,
+//       description:req.body.description,
+//       category:req.body.category,
+//       brand:req.body.brand,
+//       tags:req.body.tags,
+//       originalPrice:req.body.originalPrice,
+//       discountPrice:req.body.discountPrice,
+//       stock:req.body.stock,
+//       updateProduct:req.body.minimumQuantity,
+
+
+
+  
+//     }
+
+//   }).then(result=>{
+//     res.status(200).json({
+//       update_Product:result
+//     })
+//   }).catch(err=>{
+//     console.log(err);
+//     res.status(500).json({
+//       error:err
+//     })
+//   })
+ 
+// })
+
+//update product 
+// router.put('/update-product/:id',catchAsyncErrors (async(req,res,next)=>{
+// const productId=req.params.id
+
+//   let product=await Product.findById(productId)
+//   if(!product){
+//     return next(new ErrorHandler("Product not found",400));
+
+//   }
+
+//   product=await Product .findByIdAndUpdate(productId,req.body,{
+//     new
+//   })
+// }))
+
+
 
 // get all products of a shop
+
+
+
+
+
 router.get(
   "/get-all-products-shop/:id",
   catchAsyncErrors(async (req, res, next) => {

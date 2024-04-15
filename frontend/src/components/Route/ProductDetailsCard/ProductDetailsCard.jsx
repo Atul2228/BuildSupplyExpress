@@ -84,7 +84,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
               <div className="w-full 800px:w-[50%]">
                 <img src={`${data.images && data.images[0]?.url}`} alt="" />
                 <div className="flex">
-                  <Link to={`/shop/preview/${data.shop._id}`} className="flex">
+                  <Link  className="flex">
                     <img
                       src={`${data.images && data.images[0]?.url}`}
                       alt=""
@@ -98,15 +98,15 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                     </div>
                   </Link>
                 </div>
-                <div
+                {/* <div
                   className={`${styles.button} bg-[#000] mt-4 rounded-[4px] h-11`}
                   onClick={handleMessageSubmit}
                 >
                   <span className="text-[#fff] flex items-center">
                     Send Message <AiOutlineMessage className="ml-1" />
                   </span>
-                </div>
-                <h5 className="text-[16px] text-[red] mt-5">(50) Sold out</h5>
+                </div> */}
+                {/* <h5 className="text-[16px] text-[red] mt-5">(50) Sold out</h5> */}
               </div>
 
               <div className="w-full 800px:w-[50%] pt-5 pl-[5px] pr-[5px]">
@@ -117,10 +117,10 @@ const ProductDetailsCard = ({ setOpen, data }) => {
 
                 <div className="flex pt-3">
                   <h4 className={`${styles.productDiscountPrice}`}>
-                    {data.discountPrice}$
+                    ₹{data.discountPrice}
                   </h4>
                   <h3 className={`${styles.price}`}>
-                    {data.originalPrice ? data.originalPrice + "$" : null}
+                    {data.originalPrice ? data.originalPrice + "₹" : null}
                   </h3>
                 </div>
                 <div className="flex items-center mt-12 justify-between pr-3">

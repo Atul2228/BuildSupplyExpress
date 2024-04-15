@@ -28,7 +28,7 @@ const AllProducts = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="container mt-4">
+        <div className="container mt-4" style={{width:"100%"}}>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
@@ -48,7 +48,7 @@ const AllProducts = () => {
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
-                  <td>{`US$ ${product.discountPrice}`}</td>
+                  <td>{`₹ ${product.discountPrice}`}</td>
                   <td>{product.stock}</td>
                   <td>{product.sold_out}</td>
                   <td>{product.status}</td>
@@ -59,6 +59,16 @@ const AllProducts = () => {
                       </Button>
                     </Link>
                   </td>
+                  <td>
+                  {/* <Link to={`/product/${product._id}`}> */}
+                    <Link to={`/update-product/${product._id}`}>
+                      <Button variant="outline-primary">
+                        {/* <AiOutlineEye size={20} /> */}
+                        Update
+                      </Button>
+                    </Link>
+                  </td>
+                  
                   <td>
                     <Button variant="outline-danger" onClick={() => handleDelete(product._id)}>
                       <AiOutlineDelete size={20} />

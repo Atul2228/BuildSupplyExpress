@@ -88,18 +88,18 @@ const ProductCard = ({ data, isEvent }) => {
         </Link>
         <Link to={`${isEvent ? `/product/${data._id}?isEvent=true` : `/product/${data._id}`}`} className="text-decoration-none">
         
-            <h5 className={styles.name}>
-                  {data.name.length > 20
-                    ? data.name.slice(0, 20) + "...."
+            <h7 className={styles.name}>
+                  {data.name.length > 18
+                    ? data.name.slice(0, 18) + "...."
                     : data.name}
-                </h5>
+                </h7>
         </Link>
         <Ratings rating={data?.ratings} />
        
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <span className="fw-bold">{data.discountPrice}$</span>
-            {data.originalPrice ? <span className="text-muted text-decoration-line-through ms-2">{data.originalPrice}$</span> : null}
+            <span className="fw-bold">₹{data.discountPrice}</span>
+            {data.originalPrice ? <span className="text-muted text-decoration-line-through ms-2">₹{data.originalPrice}</span> : null}
           </div>
           <span className={styles.discount} style={{ marginLeft: "3%" }}>
                   Sold {data.sold_out}

@@ -49,6 +49,42 @@ export const createProduct =
     }
   };
 
+  // update product 
+  export const updateProduct = (id, productData) => async (dispatch) => {
+    try {
+      dispatch({ type:  "updateProductInfoRequest" });
+  
+      const config = {
+        headers: { "Content-Type": "application/json" },
+      };
+    
+      const { data } = await axios.put(
+        `${server}/product/update-product/${id}`,
+        productData,
+        config
+      );
+  
+      dispatch({
+        type: " updateProductInfoSuccess",
+        payload: data.success,
+      });
+    } catch (error) {
+      dispatch({
+        type: " updateProductInfoFailed",
+        payload: error.response.data.message,
+      });
+    }
+  };
+  
+
+
+
+
+
+
+
+ 
+
 // get All Products of a shop
 export const getAllProductsShop = (id) => async (dispatch) => {
   try {

@@ -7,7 +7,7 @@ const Hero = () => {
     <div
       className="position-relative min-vh-100 d-flex align-items-center justify-content-center"
       style={{
-        backgroundImage:"url(/Images/slide_2.png)", 
+        backgroundImage:"url(http://yesofcorsa.com/wp-content/uploads/2018/02/Construction-Wallpaper-1080p.jpg)", 
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

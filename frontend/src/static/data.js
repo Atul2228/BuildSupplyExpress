@@ -198,7 +198,7 @@ export const navItems = [
     },
     {
         id: 2,
-        title: "Bricks & Blocks",
+        title: "Bricks",
         subTitle: "",
         image_Url:
             "https://tse2.mm.bing.net/th?id=OIP.V4qQNDvAjeJESjvW-WvE4wHaHa&pid=Api&P=0&h=180",
@@ -212,14 +212,14 @@ export const navItems = [
     },
     {
         id: 4,
-        title: "Sand & Aggregates",
+        title: "Sand",
         subTitle: "",
         image_Url:
             "https://tse4.mm.bing.net/th?id=OIP.rm3mtRxr5_UBQKmFQMPtBQHaE7&pid=Api&P=0&h=180",
     },
     {
         id: 5,
-        title: "Paint & Finishes",
+        title: "Paint ",
         subTitle: "",
         image_Url:
             "https://tse3.mm.bing.net/th?id=OIP.AvplztPWdbT_MDY3uQR-YgHaDt&pid=Api&P=0&h=180",
@@ -239,7 +239,7 @@ export const navItems = [
     },
     {
         id: 8,
-        title: "Doors",
+        title: "Hardware Fixtures",
         subTitle: "",
         image_Url:
             "https://tse2.mm.bing.net/th?id=OIP.b3x1f-wCmzm3VKYKQm4TiQHaJ3&pid=Api&P=0&h=180",
@@ -348,39 +348,69 @@ export const brands = [
 },
 {
   id: 13,
-  title: "others",
+  title: "Indigo Paints",
   subTitle: "",
   image_Url:
-      "https://tse2.mm.bing.net/th?id=OIP.LJyj5yH49-UCX0Lz9ueJdQHaHa&pid=Api&P=0&h=220",
+      "https://tse4.mm.bing.net/th?id=OIP.iy9NYlo-iPNumxctS-kunQHaHa&pid=Api&P=0&h=220",
 },
 {
-  id: 10,
-  title: "TATA Cement",
+  id: 14,
+  title: "Chettinad Cement",
   subTitle: "",
   image_Url:
-      "https://tse3.mm.bing.net/th?id=OIP.z1t0z1yuanb-xvzdtWAjSgHaE8&pid=Api&P=0&h=180",
+      "https://tse3.mm.bing.net/th?id=OIP.aN5kTbJn4t8TtPdDQPCxfgHaGR&pid=Api&P=0&h=220",
+},
+
+{
+  id: 15,
+  title: "Berger",
+  subTitle: "",
+  image_Url:
+      "https://tse1.mm.bing.net/th?id=OIP.kyk2aQEwMcP92G7I3TH8lQHaEK&pid=Api&P=0&h=220",
 },
 {
-id: 11,
-title: "Kajaria",
-subTitle: "",
-image_Url:
-    "https://tse3.mm.bing.net/th?id=OIP.z1t0z1yuanb-xvzdtWAjSgHaE8&pid=Api&P=0&h=180",
+  id: 16,
+  title: "KSP Eco Bricks",
+  subTitle: "",
+  image_Url:
+      "https://tse2.mm.bing.net/th?id=OIP.6-Iw8FR0yY6n9GoI2IRDSgHaEK&pid=Api&P=0&h=220",
 },
 {
-id: 12,
-title: "Bajaj",
+id: 17,
+title: "Sudhakar Pipes And Fittings",
 subTitle: "",
 image_Url:
-  "https://tse3.mm.bing.net/th?id=OIP.z1t0z1yuanb-xvzdtWAjSgHaE8&pid=Api&P=0&h=180",
+    "https://tse2.mm.bing.net/th?id=OIP.ELw2mY9ZeldAs-6nzgoiHgHaHa&pid=Api&P=0&h=220",
 },
 {
-id: 13,
-title: "others",
+id: 18,
+title: "Birla TMT Steels",
 subTitle: "",
 image_Url:
-  "https://www.buildersmart.in/jsw",
+  "https://tse1.mm.bing.net/th?id=OIP.7Dq71X-fAnIAZjZNf3pAwAAAAA&pid=Api&P=0&h=220",
 },
+{
+  id: 19,
+  title: "Roca",
+  subTitle: "",
+  image_Url:
+    "https://tse3.mm.bing.net/th?id=OIP.oahKYmLZtnxXIomiErqwxAHaEo&pid=Api&P=0&h=220",
+  },
+
+  {
+    id: 20,
+    title: "Grohe",
+    subTitle: "",
+    image_Url:
+      "http://logos-download.com/wp-content/uploads/2016/04/Grohe_logo_logotype_emblem.jpg",
+    },
+// {
+// id: 13,
+// title: "others",
+// subTitle: "",
+// image_Url:
+//   "https://www.buildersmart.in/jsw",
+// },
 ];
   // product Data
   export const productData = [

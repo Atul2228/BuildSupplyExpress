@@ -235,7 +235,7 @@ const AllOrders = () => {
                 {item.status}
               </td>
               <td>{item.cart.length}</td>
-              <td>{"US$ " + item.totalPrice}</td>
+              <td>{"₹ " + item.totalPrice}</td>
               <td>
                 <Link to={`/user/order/${item._id}`}>
                   <Button variant="link" className="p-0">
@@ -335,7 +335,7 @@ const TrackOrder = () => {
                 {order.status}
               </td>
               <td>{order.cart.length}</td>
-              <td>{`US$ ${order.totalPrice}`}</td>
+              <td>{`₹ ${order.totalPrice}`}</td>
               <td>
                 <Link to={`/user/track/order/${order._id}`}>
                   <Button variant="outline-primary" size="sm">
