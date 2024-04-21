@@ -8,6 +8,7 @@ const OrderDetailsPage = () => {
     <div>
         <Header />
         <UserOrderDetails />
+        
         <Footer />
     </div>
   )

@@ -382,13 +382,21 @@ const AllUsers = () => {
             {/* <Line data={userDataForChart} options={options} />
              */}
                      <div className="w-full min-h-[45vh] bg-white rounded">
-          <DataGrid
+          {/* <DataGrid
             rows={rows}
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
             autoHeight
-          />
+          /> */}
+          <DataGrid
+  rows={rows}
+  columns={columns}
+  pageSize={10} // This controls the number of rows per page
+  pagination
+  autoHeight
+  disableSelectionOnClick
+/>
         </div>
                  <div style={{ height: 500, width: '100%' }}> {/* Adjust chart container size here */}
             <Line data={userDataForChart} options={options} />

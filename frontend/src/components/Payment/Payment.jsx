@@ -375,7 +375,7 @@ const CartData = ({ orderData }) => {
         <h5 className="text-[18px] font-[600]">{orderData?.discountPrice? "₹" + orderData.discountPrice : "-"}</h5>
       </div>
       <h5 className="text-[18px] font-[600] text-end pt-3">
-        ${orderData?.totalPrice}
+        ₹{orderData?.totalPrice}
       </h5>
       <br />
     </div>

@@ -109,6 +109,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your product brand!"],
   },
+  priceType: {
+    type: String,
+    required: [true, "Please enter your product brand!"],
+  },
   tags: {
     type: String,
   },

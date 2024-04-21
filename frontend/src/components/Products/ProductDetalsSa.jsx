@@ -1,3 +1,17 @@
+// import React from 'react'
+
+// function ProductDetalsSa() {
+//   return (
+//     <div>
+      
+//     </div>
+//   )
+// }
+
+// export default ProductDetalsSa
+
+
+
 import React, { useEffect, useState } from "react";
 import {
   AiFillHeart,
@@ -22,7 +36,7 @@ import axios from "axios";
 
 
 
-const ProductDetails = ({ data }) => {
+const ProductDetalsSa = ({ data }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
   const { user, isAuthenticated } = useSelector((state) => state.user);
@@ -92,27 +106,27 @@ const ProductDetails = ({ data }) => {
 
   const averageRating = avg.toFixed(2);
 
-  const handleMessageSubmit = async () => {
-    if (isAuthenticated) {
-      const groupTitle = data._id + user._id;
-      const userId = user._id;
-      const sellerId = data.shop._id;
-      await axios
-        .post(`${server}/conversation/create-new-conversation`, {
-          groupTitle,
-          userId,
-          sellerId,
-        })
-        .then((res) => {
-          navigate(`/inbox?${res.data.conversation._id}`);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-        });
-    } else {
-      toast.error("Please login to create a conversation");
-    }
-  };
+//   const handleMessageSubmit = async () => {
+//     if (isAuthenticated) {
+//       const groupTitle = data._id + user._id;
+//       const userId = user._id;
+//       const sellerId = data.shop._id;
+//       await axios
+//         .post(`${server}/conversation/create-new-conversation`, {
+//           groupTitle,
+//           userId,
+//           sellerId,
+//         })
+//         .then((res) => {
+//           navigate(`/inbox?${res.data.conversation._id}`);
+//         })
+//         .catch((error) => {
+//           toast.error(error.response.data.message);
+//         });
+//     } else {
+//       toast.error("Please login to create a conversation");
+//     }
+//   };
 
   return (
     <div className="bg-white">
@@ -162,7 +176,7 @@ const ProductDetails = ({ data }) => {
                   </div>
                 </div>
 
-                <div className="flex items-center mt-12 justify-between pr-3">
+                {/* <div className="flex items-center mt-12 justify-between pr-3">
                   <div>
                     <button
                       className="bg-info from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
@@ -199,7 +213,7 @@ const ProductDetails = ({ data }) => {
                       />
                     )}
                   </div>
-                </div>
+                </div> */}
                 {/* <div
                   className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
                   onClick={() => addToCartHandler(data._id)}
@@ -208,17 +222,12 @@ const ProductDetails = ({ data }) => {
                     Add to cart <AiOutlineShoppingCart className="ml-1" />
                   </span>
                 </div> */}
-                {
-                  (data.stock>data.minimumQuantity) ? ( <div
-                    className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
-                    onClick={() => addToCartHandler(data._id)}
-                  >
-                    <span className="text-white flex items-center">
-                      Add to cart <AiOutlineShoppingCart className="ml-1" />
-                    </span>
-                  </div> ) :(<div  className={`!mt-6 !rounded !h-11 flex items-center`} >Out of Stock</div>)
-
-                }
+                
+                           {
+                            (data.stock>data.minimumQuantity) ? (<div> Stock Available</div> ) :(<div  className={`!mt-6 !rounded !h-11 flex items-center`} >Out of Stock</div>)
+          
+                          }
+                
                 <div className="flex items-center pt-8">
                   <Link to={`/shop/preview/${data?.shop._id}`}>
                     <img
@@ -396,4 +405,5 @@ const ProductDetailsInfo = ({
   );
 };
 
-export default ProductDetails;
+export default ProductDetalsSa;
+

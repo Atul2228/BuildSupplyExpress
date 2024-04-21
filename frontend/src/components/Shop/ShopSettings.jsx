@@ -143,7 +143,7 @@ const ShopSettings = () => {
             </Form.Group>
 
             <div className="d-grid gap-2">
-              <Button variant="primary" type="submit">
+              <Button variant="info" type="submit">
                 Update Shop
               </Button>
             </div>

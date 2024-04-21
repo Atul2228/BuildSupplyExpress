@@ -100,7 +100,7 @@ const AllWithdraw = () => {
         id: item._id,
         shopId: item.seller._id,
         name: item.seller.name,
-        amount: "US$ " + item.amount,
+        amount: "₹ " + item.amount,
         status: item.status,
         createdAt: item.createdAt.slice(0, 10),
       });
@@ -118,6 +118,7 @@ const AllWithdraw = () => {
       </div>
       {open && (
         <div className="w-full fixed h-screen top-0 left-0 bg-[#00000031] z-[9999] flex items-center justify-center">
+          {/* <button className="btn-dark text-white"></button> */}
           <div className="w-[50%] min-h-[40vh] bg-white rounded shadow p-4">
             <div className="flex justify-end w-full">
               <RxCross1 size={25} onClick={() => setOpen(false)} />

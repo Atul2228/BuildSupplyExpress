@@ -19,7 +19,7 @@ main{
     height: 100vh;
     width: 200px;
     box-shadow: 2px 2px 8px rgba(0,0,0,0.2); 
-    overflow-y: auto; /* Makes the content inside the sidebar scrollable if it overflows */
+    overflow-y: auto; 
 }
 .topSection{
     display: flex;
@@ -60,4 +60,28 @@ main{
 .icon,.linkText
 {
     font-size: 20px;
+}
+
+.sidebar {
+    transition: width 0.3s ease;
+}
+
+.link {
+    color: black; /* Default link color */
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.link:hover {
+    background-color: #f0f0f0; /* Hover effect */
+}
+
+.active {
+    background-color: #007bff; /* Active state background */
+    color: white; /* Active state text color */
+}
+
+.icon {
+    margin-right: 10px; /* Space between icon and label */
 }

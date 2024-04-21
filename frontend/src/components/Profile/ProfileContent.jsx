@@ -155,7 +155,7 @@ const ProfileContent = ({ active }) => {
              </div>
            </div>
            <input
-             className="btn btn-primary mt-3"
+             className="btn btn-primary mt-3 bg-dark"
              required
              value="Update"
              type="submit"
@@ -169,7 +169,7 @@ const ProfileContent = ({ active }) => {
       {/* order */}
       {active === 2 && (
         <div>
-          <AllOrders />
+          <AllOrders style={{width:"100%"}} />
         </div>
       )}
 
@@ -216,15 +216,15 @@ const AllOrders = () => {
   }, [dispatch, user._id]);
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-3 " style={{width:"100%"}}>
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Order ID</th>
-            <th scope="col">Status</th>
-            <th scope="col">Items Qty</th>
-            <th scope="col">Total</th>
-            <th scope="col"></th> {/* Empty header for the action column */}
+            <th scope="col-2">Order ID</th>
+            <th scope="col-2">Status</th>
+            <th scope="col-2">Items Qty</th>
+            <th scope="col-2">Total</th>
+            <th scope="col-2">action</th> {/* Empty header for the action column */}
           </tr>
         </thead>
         <tbody>
@@ -250,6 +250,15 @@ const AllOrders = () => {
     </div>
   );
 };
+
+
+
+
+
+
+
+
+
 
 
 
@@ -421,7 +430,7 @@ const ChangePassword = () => {
             />
           </div>
           <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-info">
               Update
             </button>
           </div>
@@ -479,12 +488,12 @@ const Address = () => {
     <>
       <div className="container py-4">
         <h1 className="text-center mb-4">My Addresses</h1>
-        <Button variant="primary" onClick={() => setOpen(true)}>
+        <button variant="primary"  className="bg-dark text-light h-10" onClick={() => setOpen(true)}>
           Add New Address
-        </Button>
+        </button>
 
         {user.addresses.map((item, index) => (
-          <div key={index} className="d-flex justify-content-between align-items-center my-3 p-3 shadow-sm">
+          <div key={index} className="d-flex justify-content-between align-items-center my-3 p-3 shadow-sm bg-white">
             <div>{item.addressType}</div>
             <div>{`${item.address1} ${item.address2}`}</div>
             <div>{user.phoneNumber}</div>

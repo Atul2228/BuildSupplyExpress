@@ -16,6 +16,7 @@ const user = require("../model/user");
 router.post("/create-product", catchAsyncErrors(async (req, res, next) => {
   try {
     const shopId = req.body.shopId;
+    console.log(req.body.priceType);
     const shop = await Shop.findById(shopId);
     if (!shop) {
       return next(new ErrorHandler("Shop Id is invalid!", 400));
@@ -44,7 +45,7 @@ router.post("/create-product", catchAsyncErrors(async (req, res, next) => {
         ...req.body,
         images: imagesLinks,
         shop: shop,
-        
+        // priceType:req.body.priceType,
         minimumQuantity: req.body.minimumQuantity || 1
       };
 

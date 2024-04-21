@@ -10,6 +10,7 @@ import CheckoutPage from "../pages/CheckoutPage";
 import PaymentPage from "../pages/PaymentPage";
 import OrderSuccessPage from "../pages/OrderSuccessPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
+// import ProductDetailsSaPage from "../pages/ProductDetailsSaPage";
 import ProfilePage from "../pages/ProfilePage";
 import ShopCreatePage from "../pages/ShopCreate";
 import SellerActivationPage from "../pages/SellerActivationPage";
@@ -37,5 +38,6 @@ export {
     ShopLoginPage,
     OrderDetailsPage,
     TrackOrderPage,
+    // ProductDetailsSaPage
     // UserInbox
 };

@@ -69,6 +69,7 @@ import AdminDashboardProductsStatus from "./pages/AdminDashboardProductsStatus.j
 import UpdateProduct from "./components/Shop/UpdateProduct.jsx";
 import ShopProductUpdatePage from "./pages/Shop/ShopProductUpdatePage.jsx";
 import ProductSucces from "./components/Products/ProductSucces.jsx";
+import ProductDetalsSaPage from "./pages/ProductDetalsSaPage.jsx";
 
 const App = () => {
   const [stripeApikey, setStripeApiKey] = useState("");
@@ -121,6 +122,7 @@ const App = () => {
         />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} />
+        <Route path="/productSa/:id" element={<ProductDetalsSaPage />} />
         <Route path="/best-selling" element={<BestSellingPage />} />
        
         <Route path="/faq" element={<FAQPage />} />

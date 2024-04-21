@@ -4,6 +4,7 @@ import DashboardSideBar from "../../components/Shop/Layout/DashboardSideBar";
 import DashboardHero from "../../components/Shop/DashboardHero";
 
 const ShopDashboardPage = () => {
+  // const [activePath, setActivePath] = useState( );
   return (
         <div>
           <DashboardHeader />

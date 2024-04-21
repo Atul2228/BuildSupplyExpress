@@ -33,7 +33,7 @@ const ProfilePage = () => {
         <>
           {/* <Header /> */}
           <div className={`${styles.section} flex bg-[#f5f5f5] py-10`}>
-           <div className={styles.container} style={{position:"fluid"}}>
+           <div className={styles.container} style={{position:"fluid" ,width:"100%"}}>
             <ProfileSidebar  active={active} setActive={setActive}/>
          <ProfileContent active={active} />
      </div>

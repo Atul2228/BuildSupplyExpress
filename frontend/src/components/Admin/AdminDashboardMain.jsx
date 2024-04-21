@@ -9,6 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllOrdersOfAdmin } from "../../redux/actions/order";
 import Loader from "../Layout/Loader";
 import { getAllSellers } from "../../redux/actions/sellers";
+import { getAllUsers } from '../../redux/actions/user'; // Make sure to have this action available
+import { Bar } from 'react-chartjs-2';
+import AdminMainDashboardChart from "./AdminMainDashboardChart";
+
 
 const AdminDashboardMain = () => {
   const dispatch = useDispatch();
@@ -18,13 +22,83 @@ const AdminDashboardMain = () => {
 
   useEffect(() => {
     dispatch(getAllOrdersOfAdmin());
-    dispatch(getAllSellers());
-  }, []);
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
    const adminEarning = adminOrders && adminOrders.reduce((acc,item) => acc + item.totalPrice * .10, 0);
 
 
    const adminBalance = adminEarning?.toFixed(2);
+
+
+   const { users, userLoading } = useSelector(state => state.user);
+  
+ 
+ 
+   // Process data to aggregate orders, earnings, and user registrations by month
+   const processData = (orders, users) => {
+     const months = Array(12).fill(0);
+     const earnings = Array(12).fill(0.0);
+     const userCounts = Array(12).fill(0);
+ 
+     orders.forEach(order => {
+       const date = new Date(order.createdAt);
+       const month = date.getMonth();
+       months[month]++;
+       earnings[month] += order.totalPrice * 0.10;
+     });
+ 
+     users.forEach(user => {
+       const date = new Date(user.createdAt);
+       const month = date.getMonth();
+       userCounts[month]++;
+     });
+ 
+     return { months, earnings, userCounts };
+   };
+ 
+   const { months, earnings, userCounts } = adminOrders && users ? processData(adminOrders, users) : { months: [], earnings: [], userCounts: [] };
+ 
+   const data = {
+     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+     datasets: [
+       {
+         label: 'Number of Orders',
+         data: months,
+         backgroundColor: 'rgba(54, 162, 235, 0.6)',
+         borderColor: 'rgba(54, 162, 235, 1)',
+         borderWidth: 1,
+       },
+       {
+         label: 'Earnings (10%)',
+         data: earnings.map(e => parseFloat(e.toFixed(2))),
+         backgroundColor: 'rgba(255, 206, 86, 0.6)',
+         borderColor: 'rgba(255, 206, 86, 1)',
+         borderWidth: 1,
+       },
+       {
+         label: 'Number of Users',
+         data: userCounts,
+         backgroundColor: 'rgba(75, 192, 192, 0.6)',
+         borderColor: 'rgba(75, 192, 192, 1)',
+         borderWidth: 1,
+       }
+     ]
+   };
+ 
+   const options = {
+     scales: {
+       y: {
+         beginAtZero: true
+       }
+     },
+     responsive: true,
+     maintainAspectRatio: false
+   };
+ 
+  
+ 
+ 
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
@@ -70,7 +144,7 @@ const AdminDashboardMain = () => {
       row.push({
         id: item._id,
         itemsQty: item?.cart?.reduce((acc, item) => acc + item.qty, 0),
-        total: item?.totalPrice + " $",
+        total: item?.totalPrice + " ₹",
         status: item?.status,
         createdAt: item?.createdAt.slice(0,10),
       });
@@ -135,6 +209,11 @@ const AdminDashboardMain = () => {
             </Link>
           </div>
         </div>
+        <div>
+        <div style={{ height: '300px', width: '100%' }}>
+              <Bar data={data} options={options} />
+            </div>
+        </div>
   
         <br />
         <h3 className="text-[22px] font-Poppins pb-2">Latest Orders</h3>
@@ -154,4 +233,178 @@ const AdminDashboardMain = () => {
   );
 };
 
+
+
+
 export default AdminDashboardMain;
+
+
+// // import { Bar } from 'react-chartjs-2';
+// // import React, { useEffect } from 'react';
+// // import { useDispatch, useSelector } from 'react-redux';
+// // import { getAllOrdersOfAdmin } from '../../redux/actions/order';
+// // import MonthlyStatsChart from './MonthlyStatsChart'; // Import the chart component
+
+// // const AdminDashboardMain = () => {
+// //   const dispatch = useDispatch();
+// //   const { adminOrders, adminOrderLoading } = useSelector(state => state.order);
+
+// //   useEffect(() => {
+// //     dispatch(getAllOrdersOfAdmin());
+// //   }, [dispatch]);
+
+
+  
+
+// //   return (
+// //     <>
+// //       {adminOrderLoading ? (
+// //         <p>Loading...</p>
+// //       ) : (
+// //         <div className="w-full p-4">
+// //           <h3 className="text-[22px] font-Poppins pb-2">Monthly Overview</h3>
+// //           <MonthlyStatsChart data={adminOrders} />
+// //         </div>
+// //       )}
+// //     </>
+// //   );
+// // };
+
+
+// // // import React from 'react';
+
+
+// // const MonthlyStatsChart = ({ data }) => {
+
+
+// //   const processData = (orders) => {
+// //     const months = Array(12).fill(0); // Array to store orders count for each month
+// //     const earnings = Array(12).fill(0); // Array to store earnings for each month
+  
+// //     orders.forEach(order => {
+// //       const date = new Date(order.createdAt);
+// //       const month = date.getMonth(); // Get month index from date
+// //       months[month]++; // Increment the count for this month
+// //       earnings[month] += order.totalPrice * 0.10; // Add to earnings for this month
+// //     });
+  
+// //     return { months, earnings };
+// //   };
+// //   const { months, earnings } = processData(data);
+
+// //   const chartData = {
+// //     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+// //     datasets: [
+// //       {
+// //         label: 'Number of Orders',
+// //         data: months,
+// //         backgroundColor: 'rgba(54, 162, 235, 0.6)',
+// //         borderColor: 'rgba(54, 162, 235, 1)',
+// //         borderWidth: 1,
+// //       },
+// //       {
+// //         label: 'Earnings (x10%)',
+// //         data: earnings.map(e => parseFloat(e.toFixed(2))), // Format earnings to two decimals
+// //         backgroundColor: 'rgba(255, 206, 86, 0.6)',
+// //         borderColor: 'rgba(255, 206, 86, 1)',
+// //         borderWidth: 1,
+// //       }
+// //     ]
+// //   };
+
+// //   const options = {
+// //     scales: {
+// //       y: {
+// //         beginAtZero: true
+// //       }
+// //     },
+// //     responsive: true,
+// //     maintainAspectRatio: false
+// //   };
+
+// //   return <Bar data={chartData} options={options} />;
+// // };
+
+
+// // export default AdminDashboardMain;
+
+// import React, { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getAllOrdersOfAdmin } from '../../redux/actions/order';
+// import { Bar } from 'react-chartjs-2';
+// import Loader from '../Layout/Loader'; // Ensure this path is correct
+
+// const AdminDashboardMain = () => {
+//   const dispatch = useDispatch();
+//   const { adminOrders, adminOrderLoading } = useSelector(state => state.order);
+
+//   useEffect(() => {
+//     dispatch(getAllOrdersOfAdmin());
+//   }, [dispatch]);
+
+//   // Process data to aggregate orders and earnings by month
+//   const processData = (orders) => {
+//     const months = Array(12).fill(0); // Array to store orders count for each month
+//     const earnings = Array(12).fill(0.0); // Array to store earnings for each month
+
+//     orders.forEach(order => {
+//       const date = new Date(order.createdAt);
+//       const month = date.getMonth(); // Get month index from date
+//       months[month]++; // Increment the count for this month
+//       earnings[month] += order.totalPrice * 0.10; // Add to earnings for this month
+//     });
+
+//     return { months, earnings };
+//   };
+
+//   const { months, earnings } = adminOrders ? processData(adminOrders) : { months: [], earnings: [] };
+
+//   const data = {
+//     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+//     datasets: [
+//       {
+//         label: 'Number of Orders',
+//         data: months,
+//         backgroundColor: 'rgba(54, 162, 235, 0.6)',
+//         borderColor: 'rgba(54, 162, 235, 1)',
+//         borderWidth: 1,
+//       },
+//       {
+//         label: 'Earnings (x10%)',
+//         data: earnings.map(e => parseFloat(e.toFixed(2))), // Format earnings to two decimals
+//         backgroundColor: 'rgba(255, 206, 86, 0.6)',
+//         borderColor: 'rgba(255, 206, 86, 1)',
+//         borderWidth: 1,
+//       }
+//     ]
+//   };
+
+//   const options = {
+//     scales: {
+//       y: {
+//         beginAtZero: true
+//       }
+//     },
+//     responsive: true,
+//     maintainAspectRatio: false
+//   };
+
+//   return (
+//     <>
+//       {adminOrderLoading ? (
+//         <Loader />
+//       ) : (
+//         <div className="w-full p-4">
+//           <h3 className="text-[22px] font-Poppins pb-2">Monthly Overview</h3>
+//           <div style={{ height: '500px', width: '100%' }}>
+//             <Bar data={data} options={options} />
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+// };
+
+// export default AdminDashboardMain;
+
+

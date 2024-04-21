@@ -788,7 +788,7 @@ const AdminDashboardOrders = () => {
     const rows = adminOrders ? adminOrders.map(order => ({
         id: order._id,
         itemsQty: order.cart ? order.cart.reduce((acc, item) => acc + item.qty, 0) : 0,
-        total: `${order.totalPrice} ₹`,
+        total: ` ₹${order.totalPrice} `,
         status: order.status,
         createdAt: order.createdAt.slice(0, 10),
     })) : [];

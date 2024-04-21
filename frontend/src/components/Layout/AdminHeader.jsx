@@ -79,7 +79,7 @@ const AdminHeader = () => {
         <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
-                    {/* <img src="https://shopo.quomodothemes.website/assets/images/logo.svg" alt="" /> */}
+                    {/* <img src="./Img/" alt="" /> */}
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -112,7 +112,10 @@ const AdminHeader = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <img src={user?.avatar?.url} alt="" className="rounded-circle" style={{ width: '50px', height: '50px' }} />
+                        {/* <Nav.Link as={Link} > */}
+            <img src={user?.avatar?.url} alt="" className="rounded-circle" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+          {/* </Nav.Link> */}
+                            {/* <img src={user?.avatar?.url} alt="" className="rounded-circle" style={{ width: '50px', height: '50px', border:"solid", borderColor:"black",borderWidth:"10px" }} /> */}
                         </li>
                     </ul>
                 </div>

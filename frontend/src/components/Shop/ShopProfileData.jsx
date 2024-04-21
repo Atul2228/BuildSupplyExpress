@@ -156,16 +156,16 @@ const ShopProfileData = ({ isOwner }) => {
     
   }, [dispatch, id]);
 
-  const [activeKey, setActiveKey] = useState('products');
+  const [activeKey, setActiveKey] = useState('reviews');
 
   const allReviews =products && products.flatMap((product) => product.reviews);
 
   return (
     <Container className="mt-4">
       <Nav variant="tabs" activeKey={activeKey} onSelect={(k) => setActiveKey(k)} className="mb-3">
-        <Nav.Item>
+        {/* <Nav.Item>
           <Nav.Link eventKey="products">Shop Products</Nav.Link>
-        </Nav.Item>
+        </Nav.Item> */}
        
         <Nav.Item>
           <Nav.Link eventKey="reviews">Shop Reviews</Nav.Link>
@@ -179,22 +179,22 @@ const ShopProfileData = ({ isOwner }) => {
         )}
       </Nav>
 
-      {activeKey === 'products' && (
+      {/* {activeKey === 'products' && (
         <Row>
           {products && products.map((product, index) => (
             <Col sm={12} md={6} lg={4} xl={3} key={index}>
-              {/* Assume ProductCard is adapted to be a Bootstrap Card */}
+              
               <ProductCard data={product} isShop={true} />
             </Col>
           ))}
         </Row>
-      )}
+      )} */}
 
   
 
       {activeKey === 'reviews' && (
         <div>
-          {allReviews.length > 0 ? allReviews.map((review, index) => (
+          { allReviews && allReviews.length > 0 ? allReviews.map((review, index) => (
             <Card className="mb-3" key={index}>
               <Card.Body>
                 <Card.Title>{review.user.name}</Card.Title>

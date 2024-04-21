@@ -260,6 +260,29 @@ export const navItems = [
     },
 ];
 
+
+// Price Type
+export const priceTypes=[
+  {
+    title:"per Piece"
+  },
+  {
+    title:"per Kg"
+  },
+  {
+    title:"per Bag"
+  },
+  {
+    title:"per Ton"
+  },
+  {
+    title:"per Sq.ft"
+  },
+  {
+    title:"per Coil"
+  }
+]
+
 //product Brand
 
 export const brands = [

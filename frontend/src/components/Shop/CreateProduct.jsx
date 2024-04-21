@@ -3,7 +3,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createProduct } from "../../redux/actions/product";
-import { categoriesData,brands  } from "../../static/data";
+import { categoriesData,brands,priceTypes  } from "../../static/data";
 import { toast } from "react-toastify";
 
 const CreateProduct = () => {
@@ -17,11 +17,13 @@ const CreateProduct = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
+  const [priceType, setPriceType] = useState("");
   const [tags, setTags] = useState("");
   const [originalPrice, setOriginalPrice] = useState();
   const [discountPrice, setDiscountPrice] = useState();
   const [stock, setStock] = useState();
-  const [minimumQuantity, setMinimumQuantity] = useState(1); // Default to 1 or another value
+  const [minimumQuantity, setMinimumQuantity] = useState(1);
+  // const [priceType, setPriceType] = useState(); // Default to 1 or another value
 
 
   useEffect(() => {
@@ -65,6 +67,7 @@ const CreateProduct = () => {
     newForm.append("description", description);
     newForm.append("category", category);
     newForm.append("brand", brand);
+    newForm.append("priceType",priceType);
     newForm.append("tags", tags);
     newForm.append("originalPrice", originalPrice);
     newForm.append("discountPrice", discountPrice);
@@ -77,6 +80,7 @@ const CreateProduct = () => {
         description,
         category,
         brand,
+        priceType,
         tags,
         originalPrice,
         discountPrice,
@@ -87,6 +91,7 @@ const CreateProduct = () => {
       })
     );
   };
+  console.log(priceType);
 
   return (
     <div className="w-[90%] 800px:w-[50%] bg-white  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll">
@@ -165,6 +170,24 @@ const CreateProduct = () => {
         </div>
         <br />
         <div>
+          <label className="pb-2">
+            Choose Type <span className="text-red-500">*</span>
+          </label>
+          <select
+            className="w-full mt-2 border h-[35px] rounded-[5px]"
+            value={priceType}
+            onChange={(e) => setPriceType(e.target.value)}
+          >
+            <option value="Choose a category"> Price Type</option>
+            {priceTypes &&
+             priceTypes.map((i) => (
+                <option value={i.title} key={i.title}>
+                  {i.title}
+                </option>
+              ))}
+          </select>
+        </div>
+        {/* <div>
           <label className="pb-2">Tags</label>
           <input
             type="text"
@@ -174,7 +197,7 @@ const CreateProduct = () => {
             onChange={(e) => setTags(e.target.value)}
             placeholder="Enter your product tags..."
           />
-        </div>
+        </div> */}
         <br />
         <div>
           <label className="pb-2">Original Price</label>

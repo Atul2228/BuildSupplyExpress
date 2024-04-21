@@ -132,6 +132,26 @@ const Header = ({ activeHeading }) => {
           </Link>
         </li>
         <li className="nav-item">
+        {isAuthenticated ? (
+            <Link to="/profile" className="nav-link link-body-emphasis px-3">
+              <img
+               src={`${user.avatar?.url}`}
+                alt="loading....."
+                width="40"
+                // height="40"
+                className="rounded-circle"
+              ></img>
+            </Link>
+          ) : (
+            (console.log(isAuthenticated),
+            (
+              <Link to="/login" className="nav-link link-body-emphasis px-3">
+                <FaRegUserCircle size={30} />
+              </Link>
+            ))
+          )}
+        </li>
+        {/* <li className="nav-item">
           {isAuthenticated ? (
             <Link to="/profile">
               <img
@@ -150,7 +170,9 @@ const Header = ({ activeHeading }) => {
               </Link>
             ))
           )}
-        </li>
+        </li> */}
+
+        
       </ul>
     </div>
   </nav>
