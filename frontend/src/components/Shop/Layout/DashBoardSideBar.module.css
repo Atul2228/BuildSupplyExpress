@@ -78,10 +78,10 @@ main{
 }
 
 .active {
-    background-color: #007bff; /* Active state background */
-    color: white; /* Active state text color */
+    background-color: #007bff; 
+    color: white; 
 }
 
 .icon {
-    margin-right: 10px; /* Space between icon and label */
+    margin-right: 10px; 
 }

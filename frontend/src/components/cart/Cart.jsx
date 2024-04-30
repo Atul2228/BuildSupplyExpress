@@ -1,22 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
@@ -37,10 +20,7 @@ const Cart = () => {
     dispatch(removeFromCart(data));
   };
 
-  // const totalPrice = cart.reduce(
-  //   (acc, item) => acc + item.qty * item.discountPrice*100,
-  //   0
-  // );
+ 
 
   const totalPrice = cart.reduce(
     (acc, item) => acc + item.qty * item.discountPrice * 100,
@@ -52,9 +32,7 @@ const roundedTotalPrice = (totalPrice / 100).toFixed(2);
   const quantityChangeHandler = (data) => {
     dispatch(addTocart(data));
   };
-  // const handleCheckOut=()=>{
-  //   toast.error('you are not logged in')
-  // }
+ 
 
   return (
         <>
@@ -85,37 +63,7 @@ const roundedTotalPrice = (totalPrice / 100).toFixed(2);
                       </div>
                     </div>
     
-                    {/* <div className="card mb-4 mb-lg-0">
-                      <div className="card-body">
-                        {/* <p>
-                          <strong>We accept</strong>
-                        </p> *
-                        <img
-                          className="me-2"
-                          width="45px"
-                          src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-                          alt="Visa"
-                        />
-                        <img
-                          className="me-2"
-                          width="45px"
-                          src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-                          alt="American Express"
-                        />
-                        <img
-                          className="me-2"
-                          width="45px"
-                          src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-                          alt="Mastercard"
-                        />
-                        <img
-                          className="me-2"
-                          width="45px"
-                          src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
-                          alt="PayPal acceptance mark"
-                        />
-                      </div>
-                    </div> */}
+                  
                   </div>
                   <div className="col-md-4">
                     <div className="card mb-4" style={{ position: "static" }}>
@@ -161,7 +109,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
   const [value, setValue] = useState(data.qty);
   const totalPrice = (data.discountPrice * value).toFixed(2);
 
-  // const roundedTotalPrice = (totalPrice / 100).toFixed(2);
+  
 
   const increment = (data) => {
     if (data.stock < value) {
@@ -209,14 +157,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
           </p>
           {/* <p>Color: blue</p> */}
           <p>₹{data.discountPrice}</p>
-          {/* <button
-            type="button"
-            className="btn btn-primary btn-sm me-1 mb-2"
-            data-mdb-toggle="tooltip"
-            title="Remove item"
-          >
-            <i className="fas fa-trash"></i>
-          </button> */}
+       
           <button
             type="button"
             className="btn btn-danger btn-sm mb-2 w-50"

@@ -9,7 +9,7 @@ import styles from "./ProductCard.module.css";
 import {AiOutlineEye, 
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
-// import styles from "../../../styles/styles";
+
 import { useDispatch, useSelector } from "react-redux";
 import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
 import {

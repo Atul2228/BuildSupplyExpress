@@ -169,23 +169,13 @@ const ProfileContent = ({ active }) => {
       {/* order */}
       {active === 2 && (
         <div>
-          <AllOrders style={{width:"100%"}} />
+          <AllOrders style={{width:"100%",}} />
         </div>
       )}
 
-      {/* Refund */}
-      {active === 3 && (
-        <div>
-          <AllRefundOrders />
-        </div>
-      )}
+ 
 
-      {/* Track order */}
-      {active === 5 && (
-        <div>
-          <TrackOrder />
-        </div>
-      )}
+
 
       {/* Change Password */}
       {active === 6 && (
@@ -206,6 +196,7 @@ const ProfileContent = ({ active }) => {
 
 
 
+
 const AllOrders = () => {
   const { user } = useSelector((state) => state.user);
   const { orders } = useSelector((state) => state.order);
@@ -215,152 +206,53 @@ const AllOrders = () => {
     dispatch(getAllOrdersOfUser(user._id));
   }, [dispatch, user._id]);
 
-  return (
-    <div className="container mt-3 " style={{width:"100%"}}>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col-2">Order ID</th>
-            <th scope="col-2">Status</th>
-            <th scope="col-2">Items Qty</th>
-            <th scope="col-2">Total</th>
-            <th scope="col-2">action</th> {/* Empty header for the action column */}
-          </tr>
-        </thead>
-        <tbody>
-          {orders && orders.map((item) => (
-            <tr key={item._id}>
-              <td>{item._id}</td>
-              <td className={item.status === "Delivered" ? "text-success" : "text-danger"}>
-                {item.status}
-              </td>
-              <td>{item.cart.length}</td>
-              <td>{"₹ " + item.totalPrice}</td>
-              <td>
-                <Link to={`/user/order/${item._id}`}>
-                  <Button variant="link" className="p-0">
-                    <AiOutlineArrowRight size={20} />
-                  </Button>
-                </Link>
-              </td>
-            </tr>
+  const columns = [
+    { field: 'id', headerName: 'Order ID', width: 150 },
+    { field: 'status', headerName: 'Status', width: 130, 
+      cellClassName: (params) => params.value === "Delivered" ? "text-success" : "text-danger" },
+    { field: 'itemsQty', headerName: 'Items Qty', width: 100 },
+    { field: 'productNames', headerName: 'Product Names', width: 200, 
+      renderCell: (params) => (
+        <>
+          { params.value && params.value.map((name, index) => (
+            <div key={index}>{name}</div>
           ))}
-        </tbody>
-      </table>
+        </>
+      )},
+    { field: 'totalPrice', headerName: 'Total', width: 130, 
+      valueFormatter: ({ value }) => `₹ ${value}` },
+    { field: 'dateOfPurchase', headerName: 'Date of Purchase', width: 150, 
+      valueFormatter: ({ value }) => new Date(value).toLocaleDateString() },
+    { field: 'action', headerName: 'Action', width: 150, 
+      renderCell: (params) => (
+        <Link to={`/user/order/${params.id}`}>
+          <Button variant="link" className="p-0">
+            <AiOutlineArrowRight size={20} />
+          </Button>
+        </Link>
+      )},
+  ];
+
+  const rows =orders &&  orders.map((order) => ({
+    id: order._id,
+    status: order.status,
+    itemsQty: order.cart.length,
+    productNames: order.cart.map(item => item.name),
+    totalPrice: order.totalPrice,
+    dateOfPurchase: order.createdAt.slice(0, 10),
+  }));
+
+  return (
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        rowsPerPageOptions={[5]}
+      />
     </div>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const AllRefundOrders = () => {
-  const { user } = useSelector(state => state.user);
-  const { orders } = useSelector(state => state.order);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllOrdersOfUser(user._id));
-  }, [dispatch, user._id]);
-
-  const eligibleOrders = orders.filter(order => order.status === "Processing refund");
-
-  return (
-    <div className="container mt-3">
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Status</th>
-            <th>Items Qty</th>
-            <th>Total</th>
-            <th></th> {/* For the action column */}
-          </tr>
-        </thead>
-        <tbody>
-          {eligibleOrders.map((order) => (
-            <tr key={order._id}>
-              <td>{order._id}</td>
-              <td className={order.status === "Delivered" ? "text-success" : "text-warning"}>
-                {order.status}
-              </td>
-              <td>{order.cart.length}</td>
-              <td>{`US$ ${order.totalPrice}`}</td>
-              <td>
-                <Link to={`/user/order/${order._id}`}>
-                  <Button variant="outline-primary" size="sm">
-                    <AiOutlineArrowRight />
-                  </Button>
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-// export default AllRefundOrders;
-
-
-
-const TrackOrder = () => {
-  const { user } = useSelector(state => state.user);
-  const { orders } = useSelector(state => state.order);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllOrdersOfUser(user._id));
-  }, [dispatch, user._id]);
-
-  return (
-    <div className="container mt-3">
-      <table className="table table-responsive table-hover">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Status</th>
-            <th>Items Qty</th>
-            <th>Total</th>
-            <th>Action</th> {/* Added for clarity */}
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order) => (
-            <tr key={order._id}>
-              <td>{order._id}</td>
-              <td className={order.status === "Delivered" ? "text-success" : "text-danger"}>
-                {order.status}
-              </td>
-              <td>{order.cart.length}</td>
-              <td>{`₹ ${order.totalPrice}`}</td>
-              <td>
-                <Link to={`/user/track/order/${order._id}`}>
-                  <Button variant="outline-primary" size="sm">
-                    <MdTrackChanges />
-                  </Button>
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-
 
 
 
@@ -460,7 +352,7 @@ const Address = () => {
     dispatch(deleteUserAddress(id));
   };
 
-  // Assuming addressTypeData is fetched or defined elsewhere
+
   const addressTypeData = [
     { name: 'Default' },
     { name: 'Home' },

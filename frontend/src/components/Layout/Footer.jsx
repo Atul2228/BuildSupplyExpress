@@ -7,7 +7,7 @@ import {
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import {
-  // footercompanyLinks,
+  
   footerProductLinks,
   footerSupportLinks,
 } from "../../static/data";
@@ -40,14 +40,7 @@ const Footer = () => {
           </div>
 
           <div className="col-md-3 mb-3">
-            {/* <h5 className="mb-2">Shop</h5> */}
-            {/* {footerCompanyLinks.map((link, index) => (
-              <div key={index}>
-                <Link to={link.link} className="text-secondary d-block mb-1">
-                  {link.name}
-                </Link>
-              </div>
-            ))} */}
+         
           </div>
 
           <div className="col-md-3">
@@ -66,8 +59,7 @@ const Footer = () => {
       <div className="bg-light-dark text-secondary text-center py-3">
         <div className="container">
           <div className="row">
-            {/* <div className="col-12 col-md-4 mb-3 mb-md-0">© 2020 Becodemy. All rights reserved.</div>
-            <div className="col-12 col-md-4 mb-3 mb-md-0">Terms · Privacy Policy</div> */}
+           
             <div className="col-12 col-md-4">
               <img
                 src="https://hamart-shop.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffooter-payment.a37c49ac.png&w=640&q=75"

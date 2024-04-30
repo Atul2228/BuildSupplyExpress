@@ -19,8 +19,7 @@ import {
   SellerActivationPage,
   ShopLoginPage,
   OrderDetailsPage,
-  TrackOrderPage,
-
+ 
 } from "./routes/Routes.js";
 import {
   ShopDashboardPage,
@@ -59,7 +58,7 @@ import axios from "axios";
 import { server } from "./server";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-// import Header from "./components/Layout/Header.jsx";
+
 import Cart from "./components/cart/Cart.jsx";
 import Wishlist from "./components/Wishlist/Wishlist.jsx";
 import ChangeProductStatus from "./components/Admin/ChangeProductStatus.jsx";
@@ -153,14 +152,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/user/track/order/:id"
-          element={
-            <ProtectedRoute>
-              <TrackOrderPage />
-            </ProtectedRoute>
-          }
-        />
+      
         <Route path="/shop/preview/:id" element={<ShopPreviewPage />} />
         {/* shop Routes */}
         <Route path="/shop-create" element={<ShopCreatePage />} />

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   AiFillHeart,
   AiOutlineHeart,
-  // AiOutlineMessage,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +26,7 @@ const ProductDetails = ({ data }) => {
   const { cart } = useSelector((state) => state.cart);
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const { products } = useSelector((state) => state.products);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(data.minimumQuantity);
   const [click, setClick] = useState(false);
   const [select, setSelect] = useState(0);
   const navigate = useNavigate();
@@ -40,13 +39,14 @@ const ProductDetails = ({ data }) => {
       setClick(false);
     }
   }, [data, wishlist]);
+  
 
   const incrementCount = () => {
     setCount(count + 1);
   };
 
   const decrementCount = () => {
-    if (count > 1) {
+    if (count > data.minimumQuantity) {
       setCount(count - 1);
     }
   };
@@ -92,27 +92,7 @@ const ProductDetails = ({ data }) => {
 
   const averageRating = avg.toFixed(2);
 
-  const handleMessageSubmit = async () => {
-    if (isAuthenticated) {
-      const groupTitle = data._id + user._id;
-      const userId = user._id;
-      const sellerId = data.shop._id;
-      await axios
-        .post(`${server}/conversation/create-new-conversation`, {
-          groupTitle,
-          userId,
-          sellerId,
-        })
-        .then((res) => {
-          navigate(`/inbox?${res.data.conversation._id}`);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-        });
-    } else {
-      toast.error("Please login to create a conversation");
-    }
-  };
+
 
   return (
     <div className="bg-white">
@@ -158,7 +138,7 @@ const ProductDetails = ({ data }) => {
                       ₹{data.discountPrice}
                     </h4>
                     <span className="text-muted small">{data.priceType}</span>
-                    {/* Uncomment the following lines if you decide to display the original price */}
+            
                   </div>
                 </div>
 
@@ -200,14 +180,7 @@ const ProductDetails = ({ data }) => {
                     )}
                   </div>
                 </div>
-                {/* <div
-                  className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
-                  onClick={() => addToCartHandler(data._id)}
-                >
-                  <span className="text-white flex items-center">
-                    Add to cart <AiOutlineShoppingCart className="ml-1" />
-                  </span>
-                </div> */}
+             
                 {
                   (data.stock>data.minimumQuantity) ? ( <div
                     className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
@@ -381,13 +354,7 @@ const ProductDetailsInfo = ({
                 Total Reviews:{" "}
                 <span className="font-[500]">{totalReviewsLength}</span>
               </h5>
-              <Link to="/">
-                <div
-                  className={`${styles.button} !rounded-[4px] !h-[39.5px] mt-3`}
-                >
-                  {/* <h4 className="text-white">Visit Shop</h4> */}
-                </div>
-              </Link>
+  
             </div>
           </div>
         </div>

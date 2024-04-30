@@ -16,7 +16,7 @@ import ShopCreatePage from "../pages/ShopCreate";
 import SellerActivationPage from "../pages/SellerActivationPage";
 import ShopLoginPage from "../pages/ShopLoginPage";
 import OrderDetailsPage from "../pages/OrderDetailsPage";
-import TrackOrderPage from "../pages/TrackOrderPage";
+
 
 
 export { 
@@ -26,7 +26,7 @@ export {
     HomePage,
     ProductsPage,
     BestSellingPage,
-    // EventsPage,
+   
     FAQPage,
     CheckoutPage,
     PaymentPage,
@@ -37,7 +37,5 @@ export {
     SellerActivationPage,
     ShopLoginPage,
     OrderDetailsPage,
-    TrackOrderPage,
-    // ProductDetailsSaPage
-    // UserInbox
+   
 };

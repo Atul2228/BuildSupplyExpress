@@ -13,22 +13,18 @@ main{
     padding: 20px;
 
 }
-/* .sidebar{
-    background: #000;
-    color: #000;
-    height: 100vh;
-    width: 200px;
+
   
 
 
-} */
+
 .sidebar{
-    /* background: #000; Uncomment and set your desired background color */
+   
     color: #000;
     height: 100vh;
     width: 200px;
     box-shadow: 2px 2px 8px rgba(0,0,0,0.2); 
-    overflow-y: auto; /* Makes the content inside the sidebar scrollable if it overflows */
+    overflow-y: auto; 
 }
 
 .topSection{

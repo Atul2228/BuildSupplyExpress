@@ -61,144 +61,6 @@ router.post("/create-product", catchAsyncErrors(async (req, res, next) => {
   }
 }));
 
-// router.put(
-//   "/update-product/:id",
-//   // Middleware to ensure the user is authenticated
-//   catchAsyncErrors(async (req, res, next) => {
-//     try {
-//       const productId = req.params.id; // Getting product ID from URL
-//       console.log(productId);
-//       const { name, description, category, brand, tags, originalPrice, discountPrice, stock, minimumQuantity } = req.body;
-
-//       // Find the product by ID
-//       const product = await Product.findById(productId);
-//       if (!product) {
-//         return next(new ErrorHandler("Product not found", 404));
-//       }
-
-//       // Update product details if provided
-//       product.name = name || product.name;
-//       product.description = description || product.description;
-//       product.category = category || product.category;
-//       product.brand = brand || product.brand;
-      
-//       // If tags are provided and it's an array, update them
-//       if (tags && Array.isArray(tags)) {
-//         product.tags = tags;
-//       }
-
-//       product.originalPrice = originalPrice || product.originalPrice;
-//       product.discountPrice = discountPrice || product.discountPrice;
-//       product.stock = stock || product.stock;
-//       product.minimumQuantity = minimumQuantity || product.minimumQuantity;
-
-//       // Save the updated product information
-//       await product.save();
-
-//       // Respond with the updated product details
-//       res.status(200).json({
-//         success: true,
-//         message: "Product information updated successfully",
-//         product
-//       });
-
-//     } catch (error) {
-//       // Handle any errors that occur during the process
-//       return next(new ErrorHandler(error.message, 500));
-//     }
-//   })
-// );
-
-
-
-
-
-// update product 
-// `${server}/product/update-product/${id}`,
-//  router.put("/update-product/:id",
-//   catchAsyncErrors(async (req, res, next) => {
-//     let product = await Product.findById(req.params.id);
-  
-//     if (!product) {
-//       return next(new ErrorHander("Product not found", 404));
-//     }
-  
-//     // Images Start Here
-//     // let images = [];
-  
-//     // if (typeof req.body.images === "string") {
-//     //   images.push(req.body.images);
-//     // } else {
-//     //   images = req.body.images;
-//     // }
- 
-  
-//     product = await Product.findByIdAndUpdate(req.params.id, req.body, {
-//       new: true,
-//       runValidators: true,
-//       useFindAndModify: false,
-//     });
-  
-//     res.status(200).json({
-//       success: true,
-//       product,
-//     });
-//   })
-//  ) ;
-// router.put('/updateProduct',(req,res,next)=>{
-//   console.log(req.params.id);
-//   Product.findByIdAndUpdate({_id:req.params.id},{
-//     $set:{
-//       name:req.body.name,
-//       description:req.body.description,
-//       category:req.body.category,
-//       brand:req.body.brand,
-//       tags:req.body.tags,
-//       originalPrice:req.body.originalPrice,
-//       discountPrice:req.body.discountPrice,
-//       stock:req.body.stock,
-//       updateProduct:req.body.minimumQuantity,
-
-
-
-  
-//     }
-
-//   }).then(result=>{
-//     res.status(200).json({
-//       update_Product:result
-//     })
-//   }).catch(err=>{
-//     console.log(err);
-//     res.status(500).json({
-//       error:err
-//     })
-//   })
- 
-// })
-
-//update product 
-// router.put('/update-product/:id',catchAsyncErrors (async(req,res,next)=>{
-// const productId=req.params.id
-
-//   let product=await Product.findById(productId)
-//   if(!product){
-//     return next(new ErrorHandler("Product not found",400));
-
-//   }
-
-//   product=await Product .findByIdAndUpdate(productId,req.body,{
-//     new
-//   })
-// }))
-
-
-
-// get all products of a shop
-
-
-
-
 
 router.get(
   "/get-all-products-shop/:id",
@@ -339,7 +201,7 @@ router.get(
     }
   })
 );
-// Route to get all pending products for admin review
+
 
 router.get(
   "/admin/products/pending",
@@ -357,7 +219,7 @@ router.get(
     }
   })
 );
-// Route to approve a product by admin
+
 router.post(
   "/admin/products/approve/:id",
   isAuthenticated,
@@ -389,7 +251,7 @@ router.post(
   })
 );
 
-// Route to reject a product by admin
+
 router.post(
   "/admin/products/reject/:id",
   isAuthenticated,

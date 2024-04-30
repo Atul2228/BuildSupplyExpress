@@ -1,15 +1,3 @@
-// import React from 'react'
-
-// function ProductDetalsSaPage() {
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
-
-// export default ProductDetalsSaPage
-
 
 import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";

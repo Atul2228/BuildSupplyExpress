@@ -22,9 +22,7 @@ const Hero = () => {
         </Link>
       </div>
     </div>
-  //   <div>
-  //   <img src="/Images/slide_2.png" className="w-100" alt="" />
-  // </div>
+
   );
 };
 

@@ -19,7 +19,7 @@ function ProductSucces() {
                     <div className="text-center">
                         <h1>Product Created Successfully !</h1>
                         <p>Wait for the Approval to visible your product to user  </p>
-                        <Link to="/dashboard">Back Home</Link>
+                        <Link to="/dashboard">OK</Link>
                     </div>
                 </div>
             </div>

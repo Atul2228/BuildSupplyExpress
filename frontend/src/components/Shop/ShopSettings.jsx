@@ -60,10 +60,7 @@ const ShopSettings = () => {
       .catch((error) => {
         toast.error(error.response.data.message);
       });
-    // // Perform your update operation here
-    // // Example:
-    // // dispatch(updateSellerInfo({ name, description, address, phoneNumber, zipCode, avatar }));
-    // toast.success("Shop updated successfully!");
+ 
   };
 
   return (
