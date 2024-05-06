@@ -78,6 +78,7 @@ const AdminDashboardOrders = () => {
 
     const columns = [
         { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
+        { field: "name", headerName: "Order Name", minWidth: 160, flex: 1 },
         { field: "status", headerName: "Status", minWidth: 130, flex: 0.7, cellClassName: (params) => params.getValue(params.id, "status") === "Delivered" ? "greenColor" : "redColor" },
         { field: "itemsQty", headerName: "Items Qty", type: "number", minWidth: 130, flex: 0.7 },
         { field: "total", headerName: "Total", type: "number", minWidth: 130, flex: 0.8 },
@@ -86,6 +87,7 @@ const AdminDashboardOrders = () => {
 
     const rows = adminOrders ? adminOrders.map(order => ({
         id: order._id,
+        name:order.cart.map(item => item.name), // Assuming 'name' is the property that stores the order name
         itemsQty: order.cart ? order.cart.reduce((acc, item) => acc + item.qty, 0) : 0,
         total: ` ₹${order.totalPrice} `,
         status: order.status,

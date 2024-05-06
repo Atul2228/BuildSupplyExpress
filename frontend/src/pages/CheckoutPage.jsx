@@ -7,9 +7,8 @@ import Footer from '../components/Layout/Footer';
 const CheckoutPage = () => {
   return (
     <div>
-        <Header />
-        <br />
-        <br />
+        {/* <Header /> */}
+        
        
         <Checkout />
         <br />

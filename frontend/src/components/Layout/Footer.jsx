@@ -27,7 +27,7 @@ const Footer = () => {
               <AiFillYoutube size={25} className="cursor-pointer" />
             </div>
           </div>
-
+        
           <div className="col-md-3 mb-3">
             <h5 className="mb-2">Company</h5>
             {footerProductLinks.map((link, index) => (
@@ -55,7 +55,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
+     
       <div className="bg-light-dark text-secondary text-center py-3">
         <div className="container">
           <div className="row">

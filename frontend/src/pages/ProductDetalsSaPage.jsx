@@ -29,7 +29,7 @@ const ProductDetalsSaPage = () => {
 
   return (
     <div>
-      <Header />
+    
       <ProductDetalsSa
        data={data} />
       

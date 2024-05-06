@@ -77,7 +77,7 @@ const roundedTotalPrice = (totalPrice / 100).toFixed(2);
                             <div>
                               <strong>Total amount</strong>
                               <strong>
-                                <p className="mb-0">(including VAT)</p>
+                                <p className="mb-0">(including GST)</p>
                               </strong>
                             </div>
                             <span>

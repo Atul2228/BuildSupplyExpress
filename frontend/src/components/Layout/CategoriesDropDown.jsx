@@ -10,7 +10,7 @@ function CategoriesDropDown() {
 
   return (
     <div className={styles.dropdown}>
-      <p className={styles.dropbtn}>
+      <p className={styles.dropbtn} style={{color:"white"}}>
         Categories
         <i className="fa fa-caret-down"></i>
       </p>

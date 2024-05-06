@@ -18,15 +18,12 @@ import { toast } from "react-toastify";
 import Ratings from "./Ratings";
 import axios from "axios";
 
-
-
-
 const ProductDetails = ({ data }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const { products } = useSelector((state) => state.products);
-  const [count, setCount] = useState(data.minimumQuantity);
+  const [count, setCount] = useState(2);
   const [click, setClick] = useState(false);
   const [select, setSelect] = useState(0);
   const navigate = useNavigate();
@@ -39,14 +36,13 @@ const ProductDetails = ({ data }) => {
       setClick(false);
     }
   }, [data, wishlist]);
-  
 
   const incrementCount = () => {
     setCount(count + 1);
   };
 
   const decrementCount = () => {
-    if (count > data.minimumQuantity) {
+    if (count > 2) {
       setCount(count - 1);
     }
   };
@@ -92,8 +88,6 @@ const ProductDetails = ({ data }) => {
 
   const averageRating = avg.toFixed(2);
 
-
-
   return (
     <div className="bg-white">
       {data ? (
@@ -138,7 +132,6 @@ const ProductDetails = ({ data }) => {
                       ₹{data.discountPrice}
                     </h4>
                     <span className="text-muted small">{data.priceType}</span>
-            
                   </div>
                 </div>
 
@@ -180,18 +173,21 @@ const ProductDetails = ({ data }) => {
                     )}
                   </div>
                 </div>
-             
-                {
-                  (data.stock>data.minimumQuantity) ? ( <div
+
+                {data.stock > data.minimumQuantity ? (
+                  <div
                     className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
                     onClick={() => addToCartHandler(data._id)}
                   >
                     <span className="text-white flex items-center">
                       Add to cart <AiOutlineShoppingCart className="ml-1" />
                     </span>
-                  </div> ) :(<div  className={`!mt-6 !rounded !h-11 flex items-center`} >Out of Stock</div>)
-
-                }
+                  </div>
+                ) : (
+                  <div className={`!mt-6 !rounded !h-11 flex items-center`}>
+                    Out of Stock
+                  </div>
+                )}
                 <div className="flex items-center pt-8">
                   <Link to={`/shop/preview/${data?.shop._id}`}>
                     <img
@@ -201,7 +197,7 @@ const ProductDetails = ({ data }) => {
                     />
                   </Link>
                   <div className="pr-8">
-                    <Link >
+                    <Link>
                       <h3 className={`${styles.shop_name} pb-1 pt-1`}>
                         {data.shop.name}
                       </h3>
@@ -210,7 +206,6 @@ const ProductDetails = ({ data }) => {
                       ({averageRating}/5) Ratings
                     </h5>
                   </div>
-     
                 </div>
               </div>
             </div>
@@ -354,7 +349,6 @@ const ProductDetailsInfo = ({
                 Total Reviews:{" "}
                 <span className="font-[500]">{totalReviewsLength}</span>
               </h5>
-  
             </div>
           </div>
         </div>

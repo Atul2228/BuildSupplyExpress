@@ -74,7 +74,7 @@ async function generateAndSendInvoice(order, userEmail) {
         "products": order.cart.map(item => ({
             "quantity": item.quantity,
             "description": item.name,
-            "price": item.totalPrice
+            "price": item.discountPrice
             
            
         })),

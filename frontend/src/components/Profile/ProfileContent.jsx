@@ -233,7 +233,7 @@ const AllOrders = () => {
       )},
   ];
 
-  const rows =orders &&  orders.map((order) => ({
+  const rows = orders && orders.map((order) => ({
     id: order._id,
     status: order.status,
     itemsQty: order.cart.length,
@@ -444,13 +444,13 @@ const Address = () => {
 
             {/* Address Line 1 */}
             <Form.Group className="mb-3">
-              <Form.Label>Address 1</Form.Label>
+              <Form.Label>Address </Form.Label>
               <Form.Control type="text" required value={address1} onChange={(e) => setAddress1(e.target.value)} />
             </Form.Group>
 
             {/* Address Line 2 */}
             <Form.Group className="mb-3">
-              <Form.Label>Address 2</Form.Label>
+              <Form.Label>Land Mark</Form.Label>
               <Form.Control type="text" required value={address2} onChange={(e) => setAddress2(e.target.value)} />
             </Form.Group>
 
